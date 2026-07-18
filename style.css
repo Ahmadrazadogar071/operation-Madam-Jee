@@ -1,7 +1,3 @@
-/* ==========================
-   GLOBAL
-========================== */
-
 *{
 margin:0;
 padding:0;
@@ -10,82 +6,48 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#050505,#111,#1a001f);
-overflow:hidden;
+background:#050505;
 color:#fff;
-height:100vh;
+overflow:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
+height:100vh;
 text-align:center;
-position:relative;
 }
 
-/* ==========================
-   FLOATING HEARTS
-========================== */
-
-#hearts{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-overflow:hidden;
-z-index:1;
-}
-
-/* ==========================
-   BOOT SCREEN
-========================== */
+/* Boot Screen */
 
 #boot{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+inset:0;
 background:#000;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-flex-direction:column;
-z-index:9999;
+}
+
+#boot h1{
+color:#00ff66;
+font-size:48px;
+margin-bottom:30px;
+text-shadow:0 0 20px #00ff66;
 }
 
 #terminal{
-color:#00ff99;
-font-size:20px;
+color:#00ff66;
+font-size:18px;
+line-height:32px;
 font-family:monospace;
-line-height:35px;
-text-shadow:0 0 12px #00ff99;
 }
 
-/* ==========================
-   MAIN SECTION
-========================== */
+/* Main */
 
 #main{
-display:none;
-width:100%;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:2;
-animation:fadeIn 1.5s ease;
-}
-
-.card{
-width:90%;
-max-width:700px;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(15px);
-border:2px solid rgba(255,255,255,.15);
-border-radius:30px;
-padding:40px;
-box-shadow:0 0 40px rgba(255,0,120,.45);
-animation:glow 2s infinite alternate;
+max-width:800px;
+padding:20px;
+animation:fadeIn 1.5s;
 }
 
 .photo{
@@ -95,90 +57,64 @@ border-radius:50%;
 object-fit:cover;
 border:5px solid #ff2d75;
 box-shadow:0 0 25px #ff2d75;
-margin-bottom:20px;
-transition:.5s;
-}
-
-.photo:hover{
-transform:scale(1.08) rotate(3deg);
-box-shadow:0 0 50px #ff2d75;
+animation:photoReveal 2s ease forwards,glow 2s infinite alternate;
+filter:blur(10px);
+opacity:0;
 }
 
 h1{
-font-size:42px;
-margin-bottom:20px;
-color:#fff;
-text-shadow:0 0 15px #ff2d75;
+font-size:60px;
+margin:25px 0;
 }
 
 #typing{
-font-size:20px;
+font-size:26px;
 line-height:1.8;
-min-height:120px;
-margin-bottom:30px;
+max-width:800px;
+margin:auto;
+min-height:140px;
 }
-
-/* ==========================
-   BUTTONS
-========================== */
 
 .buttons{
 display:flex;
 justify-content:center;
-gap:20px;
-flex-wrap:wrap;
+gap:25px;
+margin-top:35px;
 }
 
 button{
-padding:15px 35px;
-font-size:18px;
+padding:16px 40px;
 border:none;
 border-radius:50px;
+font-size:20px;
 cursor:pointer;
 transition:.3s;
-font-weight:bold;
 }
-/* ==========================
-   BUTTON COLORS
-========================== */
 
 #yes{
 background:#ff2d75;
 color:#fff;
-box-shadow:0 0 20px #ff2d75;
+box-shadow:0 0 25px #ff2d75;
 }
 
 #yes:hover{
-transform:scale(1.08);
-box-shadow:0 0 40px #ff2d75;
+transform:scale(1.1);
 }
 
-#music{
-background:#6c63ff;
-color:#fff;
-box-shadow:0 0 20px #6c63ff;
+#no{
+background:#444;
+color:white;
 }
 
-#music:hover{
-transform:scale(1.08);
-box-shadow:0 0 40px #6c63ff;
-}
-
-/* ==========================
-   POPUP
-========================== */
+/* Popup */
 
 #popup{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+inset:0;
 display:none;
 justify-content:center;
 align-items:center;
 background:rgba(0,0,0,.85);
-z-index:999;
 }
 
 .popup-box{
@@ -188,18 +124,16 @@ border-radius:25px;
 width:90%;
 max-width:600px;
 border:2px solid #ff2d75;
-box-shadow:0 0 35px #ff2d75;
-animation:popup .6s ease;
+box-shadow:0 0 40px #ff2d75;
 }
 
 .popup-box h2{
-font-size:34px;
+font-size:40px;
 margin-bottom:20px;
-color:#ff2d75;
 }
 
 .popup-box p{
-font-size:20px;
+font-size:22px;
 line-height:1.8;
 margin-bottom:25px;
 }
@@ -209,33 +143,57 @@ background:#ff2d75;
 color:white;
 }
 
-/* ==========================
-   HEART ANIMATION
-========================== */
+/* Hearts */
 
 @keyframes floatHeart{
 
 0%{
-transform:translateY(0) scale(.8);
+transform:translateY(0);
 opacity:1;
 }
 
 100%{
-transform:translateY(-120vh) scale(1.5);
+transform:translateY(-120vh);
 opacity:0;
 }
 
 }
 
-/* ==========================
-   ANIMATIONS
-========================== */
+/* Animations */
+
+@keyframes photoReveal{
+
+0%{
+opacity:0;
+transform:scale(.5);
+filter:blur(15px);
+}
+
+100%{
+opacity:1;
+transform:scale(1);
+filter:blur(0);
+}
+
+}
+
+@keyframes glow{
+
+from{
+box-shadow:0 0 25px #ff2d75;
+}
+
+to{
+box-shadow:0 0 60px #ff2d75,0 0 120px #ff2d75;
+}
+
+}
 
 @keyframes fadeIn{
 
 from{
 opacity:0;
-transform:translateY(40px);
+transform:translateY(50px);
 }
 
 to{
@@ -245,41 +203,9 @@ transform:translateY(0);
 
 }
 
-@keyframes glow{
-
-from{
-box-shadow:0 0 20px rgba(255,45,117,.5);
-}
-
-to{
-box-shadow:0 0 60px rgba(255,45,117,1);
-}
-
-}
-
-@keyframes popup{
-
-from{
-opacity:0;
-transform:scale(.7);
-}
-
-to{
-opacity:1;
-transform:scale(1);
-}
-
-}
-
-/* ==========================
-   MOBILE
-========================== */
+/* Mobile */
 
 @media(max-width:768px){
-
-.card{
-padding:25px;
-}
 
 .photo{
 width:170px;
@@ -287,31 +213,28 @@ height:170px;
 }
 
 h1{
-font-size:30px;
+font-size:38px;
 }
 
 #typing{
-font-size:17px;
+font-size:20px;
 }
 
 .buttons{
 flex-direction:column;
+align-items:center;
 }
 
 button{
-width:100%;
-}
-
-.popup-box{
-padding:25px;
+width:220px;
 }
 
 .popup-box h2{
-font-size:28px;
+font-size:30px;
 }
 
 .popup-box p{
-font-size:17px;
+font-size:18px;
 }
 
 }
